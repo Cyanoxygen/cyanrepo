@@ -1,0 +1,5 @@
+# Do nothing
+abinfo "Do nothing..."
+mkdir -p "$PKGDIR/usr/lib/spotify"
+mkdir -p "$PKGDIR/usr/share/doc/spotify"
+

@@ -1,0 +1,13 @@
+PKGNAME=libcurl-gnutls
+PKGSEC=libs
+PKGDEP="ca-certs krb5 libidn2 libssh2 nghttp2 gnutls zlib rtmpdump \
+        brotli libpsl e2fsprogs"
+PKGDES="An URL retrieval library with gnutls flavour"
+RECONF=0
+PKGDEP__RETRO="ca-certs openssl"
+PKGDEP__ARMEL="${PKGDEP__RETRO}"
+PKGDEP__ARMHF="${PKGDEP__RETRO}"
+PKGDEP__I486="${PKGDEP__RETRO}"
+PKGDEP__LOONGSON2F="${PKGDEP__RETRO}"
+PKGDEP__POWERPC="${PKGDEP__RETRO}"
+PKGDEP__PPC64="${PKGDEP__RETRO}"

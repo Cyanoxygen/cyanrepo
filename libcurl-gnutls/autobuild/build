@@ -1,0 +1,36 @@
+# libcurl-gnutls
+abinfo "Configuring build files..."
+./configure --prefix='/usr' \
+    --mandir='/usr/share/man' \
+    --disable-ldap \
+    --disable-ldaps \
+    --disable-manual \
+    --disable-versioned-symbols \
+    --enable-ipv6 \
+    --enable-threaded-resolver \
+    --without-gssapi \
+    --with-libssh2 \
+    --without-libidn \
+    --without-ssl \
+    --with-gnutls='/usr' \
+    --with-random='/dev/urandom' \
+    --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
+
+# Build libraries only, as we just need that sweet libcurl-gnutls.so
+abinfo "Building libs..."
+make -C lib
+
+abinfo "Installing libs..."
+# Taken fron Arch Linux PKGBUILD
+# See https://github.com/archlinux/svntogit-community/blob/packages/libcurl-gnutls/trunk/PKGBUILD
+make -C lib DESTDIR="$PKGDIR" install
+mv "${PKGDIR}"/usr/lib/libcurl{,-gnutls}.so.4.6.0
+rm "${PKGDIR}"/usr/lib/libcurl.{a,so}*
+abinfo "Creating symbolic links..."
+for version in 3 4; do
+    ln -s libcurl-gnutls.so.4.6.0 "${PKGDIR}"/usr/lib/libcurl-gnutls.so.${version}
+done
+install -dm 755 "${PKGDIR}"/usr/share/licenses
+ln -s curl "${PKGDIR}"/usr/share/licenses/libcurl-gnutls
+
+abinfo "Done!"

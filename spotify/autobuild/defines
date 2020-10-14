@@ -1,0 +1,4 @@
+PKGNAME="spotify"
+PKGDEP="libcurl-gnutls alsa-lib at-spi2-atk cups desktop-file-utils fontconfig gtk-3 gconf libnotify libsecret nss x11-lib"
+PKGSEC=x11
+PKGDES="Spotify streaming music client"
