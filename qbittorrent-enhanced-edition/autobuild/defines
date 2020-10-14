@@ -1,7 +1,8 @@
 PKGNAME=qbittorrent-enhanced-edition
 PKGSEC=web
 PKGDEP="desktop-file-utils libtorrent-rasterbar qt-5 xdg-utils"
+PKGCONFL="qbittorrent"
 BUILDDEP="boost"
 PKGDES="Free and reliable P2P Bittorrent client - UNOFFICIAL Enhanced Edition"
-
+ABTYPE="cmakeninja"
 MAKE_AFTER="INSTALL_ROOT=$PKGDIR"
