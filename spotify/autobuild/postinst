@@ -17,7 +17,7 @@ mkdir -p $TMPDIR
 errquit() {
         echo "Run \`sudo apt -f install' to rerun installation process."
         rm -rf $TMPDIR
-        return 1
+        exit 1
 }
 
 echo "Removing existing Spotify files..."
