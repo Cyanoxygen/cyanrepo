@@ -20,13 +20,6 @@ errquit() {
         exit 1
 }
 
-echo "Killing running Spotify processes..."
-pkill "spotify"
-
-echo "Removing existing Spotify files..."
-rm -f /usr/bin/spotify
-rm -rf /usr/lib/spotify
-rm -rf /usr/share/doc/spotify
 
 # Download the package
 for i in 1 2 3; do
@@ -46,6 +39,14 @@ if [ "$?" != "0" ]; then
         # return 1 to the parent process to fail this installation.
         errquit
 fi
+
+echo "Killing running Spotify processes..."
+pkill "spotify"
+
+echo "Removing existing Spotify files..."
+rm -f /usr/bin/spotify
+rm -rf /usr/lib/spotify
+rm -rf /usr/share/doc/spotify
 
 # Unpack the package
 if [ "$UNPACK_EXEC" == "dpkg-deb" ]; then
