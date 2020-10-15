@@ -69,6 +69,7 @@ fi
 
 # Move the file to the disired destination
 echo "Moving Spotify folder..."
+mkdir -p /usr/share/doc/spotify/
 mv $TMPDIR/usr/share/spotify /usr/lib/
 cp $TMPDIR/usr/share/doc/spotify-client/* /usr/share/doc/spotify/
 ln -sf /usr/lib/spotify/spotify /usr/bin/spotify
