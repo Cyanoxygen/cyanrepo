@@ -1,6 +1,6 @@
 # CyanRepo
 
-This is a thirc-party software repository built in personal interest, to provide some unavailable packages in the Official AOSC Tree.
+This is a third-party software repository built in personal interest, to provide some unavailable packages in the Official AOSC Tree.
 
 Some packages are the proprietary version of a open source software, <!-- like Visual Studio Code --> some are fork of an open source software, and others are totally proprietary.
 
@@ -31,11 +31,11 @@ So this idea comes out, to provide some (meta or not) packages in order to insta
 
 ## List of packages
 
-Hint: for "type" sectioin, the definition is as follows:
+Hint: for "type" section, the definition is as follows:
 
 - `O` stands for an open source software.
 - `P` stands for an proprietary software, and no support other than specific distributions, and no universal prebuilt packages.
-- `p` stands for an proprietary software, but they do provide an universal package (e.g. prebuiut tarballs).
+- `p` stands for an proprietary software, but they do provide an universal package (e.g. prebuilt tarballs).
 - `V` stands for proprietary variant of an open source software, these are commonly "Official releases".
 - `v` stands for fork of an open source software, they do have some features which are unavailable in the official tree.
 - `a` stands for an prebuilt container format package from an open source software, such as AppImage.
