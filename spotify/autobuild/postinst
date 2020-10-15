@@ -45,8 +45,8 @@ pkill "spotify"
 
 echo "Removing existing Spotify files..."
 rm -f /usr/bin/spotify
-rm -rf /usr/lib/spotify/*
-rm -rf /usr/share/doc/spotify/*
+rm -rf /usr/lib/spotify
+rm -rf /usr/share/doc/spotify
 
 # Unpack the package
 if [ "$UNPACK_EXEC" == "dpkg-deb" ]; then
@@ -75,7 +75,7 @@ fi
 echo "Moving Spotify folder..."
 mkdir -p /usr/share/doc/spotify/
 mv $TMPDIR/usr/share/spotify /usr/lib/
-cp $TMPDIR/usr/share/doc/spotify-client/* /usr/share/doc/spotify/
+cp -R $TMPDIR/usr/share/doc/spotify-client /usr/share/doc/spotify
 ln -sf /usr/lib/spotify/spotify /usr/bin/spotify
 echo "Moved to /usr/lib/spotify."
 
@@ -104,7 +104,7 @@ fi
 for icon in "$spotifyPath"/icons/spotify-linux-*.png; do
   [ -e "$icon" ] || break
   size="${icon##*/spotify-linux-}"
-  "$XDG_ICON_RESOURCE" install --noupdate --size "${size%.png}" "$icon" "spotify-client"
+  "$XDG_ICON_RESOURCE" install --noupdate --size "${size%.png}" "$icon" "spotify"
 done
 "$XDG_ICON_RESOURCE" forceupdate
 
