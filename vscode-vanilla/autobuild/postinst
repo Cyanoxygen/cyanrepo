@@ -24,19 +24,26 @@ echo "Preparing setup..."
 mkdir -p $TMPDIR
 
 echo "Downloading Visual Studio Code..."
+FAILED=1
 pushd "$TMPDIR" > /dev/null
 for i in 1 2 3; do
         echo "Attempt $i/3..."
         wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD"
         if [ "$?" == "0" ]; then
                 echo "Download complete."
+                FAILED=0
                 break
         fi
+done
 
-if [ "$?" != "0" ]; then
+if [ "$FAILED" != "0" ]; then
         echo "Failed to download. Please try again."
         errquit
 fi
+
+echo "Removing existing files..."
+rm -rf /usr/share/vscode 2>/dev/null || true
+rm -rf /usr/lib/vscode 2>/dev/null || true
 
 echo "Unpacking Visual Studio Code..."
 tar -xvf "$TMPDIR/$PACKFILE"
@@ -45,19 +52,17 @@ if [ "$?" != "0" ]; then
         errquit
 fi
 
-mkdir -p "$PKGDIR/usr/lib/vscode"
-
+echo "Copying files..."
 if [ "$(uname -m)" == "aarch64" ]; then
-        cp -r "$TMPDIR/VSCode-linux-arm64/*" "/usr/lib/vscode"
+        cp -R "$TMPDIR/VSCode-linux-arm64" "/usr/lib/vscode"
 else
-        cp -r "$TMPDIR/VSCode-linux-x64/*" "/usr/lib/vscode"
+        cp -R "$TMPDIR/VSCode-linux-x64" "/usr/lib/vscode"
 fi
 
 echo "Configuring VSCode..."
-# Copy VSCode logo to pixmap
-cp /usr/lib/vscode/resources/app/resources/linux/code.png /usr/share/pixmaps/com.visualstudio.code.png
-
-cat | bash <<'EOF'
+# Get back to root
+popd > /dev/null
+cat > $TMPDIR/configure.sh <<'EOF'
 #!/usr/bin/env bash
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -65,7 +70,7 @@ cat | bash <<'EOF'
 
 # Symlink bin command to /usr/bin
 rm -f /usr/bin/code
-ln -s /usr/share/code/bin/code /usr/bin/code
+ln -s /usr/lib/vscode/bin/code /usr/bin/code
 
 # Register code in the alternatives system
 # Priority of 0 should never make code the default editor in auto mode as most
@@ -91,5 +96,6 @@ if [ "code" != "code-oss" ]; then
 fi
 EOF
 
+bash $TMPDIR/configure.sh
 echo "Installation Complete!"
 rm -rf $TMPDIR
