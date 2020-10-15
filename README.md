@@ -45,9 +45,9 @@ Hint: for "type" sectioin, the definition is as follows:
 | Y    | `v`  | `qbittorrent-enhanced-edition` | qBittorrent Enhanced Edition, a powerful Bittorrent software clone, with many features.                                                                         | https://github.com/c0re100/qBittorrent-Enhanced-Edition               | As is               | amd64, arm64 |
 | Y    | `P`  | `spotify`                      | Meta package for installing Spotify software. WARNING: local files playback is currently not supported. You may receive segfault after clicking "Add a source". | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/ | `/usr/lib/spotify/` | amd64 only   |
 | N    | `V`  | `vscode-vanilla`               | The official release of Visual Studio Code, an powerful editor.                                                                                                 | https://go.microsoft.com/fwlink/?LinkID=620884                        | `/usr/lib/vscode/`  | amd64, arm64 |
+| N    | `O`  | `librespot`                    | An open source Spotify library                                                                                                                                  | https://github.com/librespot-org/librespot                            | As is               | amd64, arm64 |
 
-
-## New package request
+## Having issue? Or requesting new package?
 
 Just file an issue or make your own fork and make a pull request.
 
