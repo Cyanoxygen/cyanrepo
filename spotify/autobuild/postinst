@@ -20,6 +20,9 @@ errquit() {
         exit 1
 }
 
+echo "Killing running Spotify processes..."
+pkill "spotify"
+
 echo "Removing existing Spotify files..."
 rm -f /usr/bin/spotify
 rm -rf /usr/lib/spotify
