@@ -45,8 +45,8 @@ pkill "spotify"
 
 echo "Removing existing Spotify files..."
 rm -f /usr/bin/spotify
-rm -rf /usr/lib/spotify
-rm -rf /usr/share/doc/spotify
+rm -rf /usr/lib/spotify/*
+rm -rf /usr/share/doc/spotify/*
 
 # Unpack the package
 if [ "$UNPACK_EXEC" == "dpkg-deb" ]; then
