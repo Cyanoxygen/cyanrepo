@@ -13,7 +13,7 @@ errquit() {
         exit 1
 }
 
-if [ "$(uname -m)" == "aarch64" ]; do
+if [ "$(uname -m)" == "aarch64" ]; then
         DOWNLOAD="https://update.code.visualstudio.com/latest/linux-arm64/stable"
         PACKFILE="code-stable-arm64-1602601132.tar.gz"
 fi
