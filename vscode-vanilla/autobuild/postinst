@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# Visual Studio Code Bootstrapper
+
+DOWNLOAD="https://update.code.visualstudio.com/latest/linux-x64/stable"
+PACKFILE="code-stable-x64-1602601238.tar.gz"
+TMPDIR="/var/tmp/vscode-vanilla"
+
+errquit() {
+        echo "Run \`sudo apt -f install' to rerun installation process."
+        popd > /dev/null
+        rm -rf $TMPDIR
+        exit 1
+}
+
+if [ "$(uname -m)" == "aarch64" ]; do
+        DOWNLOAD="https://update.code.visualstudio.com/latest/linux-arm64/stable"
+        PACKFILE="code-stable-arm64-1602601132.tar.gz"
+fi
+
+echo "Target architecture is $(uname -m)."
+echo "Preparing setup..."
+
+mkdir -p $TMPDIR
+
+echo "Downloading Visual Studio Code..."
+pushd "$TMPDIR" > /dev/null
+for i in 1 2 3; do
+        echo "Attempt $i/3..."
+        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD"
+        if [ "$?" == "0" ]; then
+                echo "Download complete."
+                break
+        fi
+
+if [ "$?" != "0" ]; then
+        echo "Failed to download. Please try again."
+        errquit
+fi
+
+echo "Unpacking Visual Studio Code..."
+tar -xvf "$TMPDIR/$PACKFILE"
+if [ "$?" != "0" ]; then
+        echo "Failed to unpack the archive. Please try again."
+        errquit
+fi
+
+mkdir -p "$PKGDIR/usr/lib/vscode"
+
+if [ "$(uname -m)" == "aarch64" ]; then
+        cp -r "$TMPDIR/VSCode-linux-arm64/*" "/usr/lib/vscode"
+else
+        cp -r "$TMPDIR/VSCode-linux-x64/*" "/usr/lib/vscode"
+fi
+
+echo "Configuring VSCode..."
+# Copy VSCode logo to pixmap
+cp /usr/lib/vscode/resources/app/resources/linux/code.png /usr/share/pixmaps/com.visualstudio.code.png
+
+cat | bash <<'EOF'
+#!/usr/bin/env bash
+#
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for license information.
+
+# Symlink bin command to /usr/bin
+rm -f /usr/bin/code
+ln -s /usr/share/code/bin/code /usr/bin/code
+
+# Register code in the alternatives system
+# Priority of 0 should never make code the default editor in auto mode as most
+# developers would prefer a terminal editor as the default.
+update-alternatives --install /usr/bin/editor editor /usr/bin/code 0
+
+# Install the desktop entry
+if hash desktop-file-install 2>/dev/null; then
+	desktop-file-install /usr/share/applications/code.desktop
+	desktop-file-install /usr/share/applications/code-url-handler.desktop
+fi
+
+# Update mimetype database to pickup workspace mimetype
+if hash update-mime-database 2>/dev/null; then
+	update-mime-database /usr/share/mime
+fi
+
+if [ "code" != "code-oss" ]; then
+	# Remove the legacy bin command if this is the stable build
+	if [ "code" = "code" ]; then
+		rm -f /usr/local/bin/code
+	fi
+fi
+EOF
+
+echo "Installation Complete!"
+rm -rf $TMPDIR
