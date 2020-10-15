@@ -1,8 +1,8 @@
 # CyanRepo
 
-This is a third-party software repository built in personal interest, to provide some unavailable packages in the Official AOSC Tree.
+This is a third-party software repository built in personal interest, to provide some packages which are unavailable in the Official AOSC Tree.
 
-Some packages are the proprietary version of a open source software, <!-- like Visual Studio Code --> some are fork of an open source software, and others are totally proprietary.
+Some of these packages are the proprietary release of a open source software, <!-- like Visual Studio Code --> some are fork of an open source software, and others are totally proprietary.
 
 WARNING: This repo may against their EULAs. Use it at your own risk. Some packages are amd64 only.
 
@@ -40,12 +40,18 @@ Hint: for "type" section, the definition is as follows:
 - `v` stands for fork of an open source software, they do have some features which are unavailable in the official tree.
 - `a` stands for an prebuilt container format package from an open source software, such as AppImage.
 
-| Done | Type | Package Name                   | Description                                                                                                                                                     | Source                                                                | Install path        | Available in |
-| ---- | ---- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------- | ------------ |
-| Y    | `v`  | `qbittorrent-enhanced-edition` | qBittorrent Enhanced Edition, a powerful Bittorrent software clone, with many features.                                                                         | https://github.com/c0re100/qBittorrent-Enhanced-Edition               | As is               | amd64, arm64 |
-| Y    | `P`  | `spotify`                      | Meta package for installing Spotify software. WARNING: local files playback is currently not supported. You may receive segfault after clicking "Add a source". | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/ | `/usr/lib/spotify/` | amd64 only   |
-| N    | `V`  | `vscode-vanilla`               | The official release of Visual Studio Code, an powerful editor.                                                                                                 | https://go.microsoft.com/fwlink/?LinkID=620884                        | `/usr/lib/vscode/`  | amd64, arm64 |
-| N    | `O`  | `librespot`                    | An open source Spotify library                                                                                                                                  | https://github.com/librespot-org/librespot                            | As is               | amd64, arm64 |
+| Done | Type | Package Name                   | Description                                                           | Source                                                                                      | Install path        | Available in |
+| ---- | ---- | ------------------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------- | ------------ |
+| Y    | `v`  | `qbittorrent-enhanced-edition` | qBittorrent Enhanced Edition, a qBittorrent fork, with many features. | https://github.com/c0re100/qBittorrent-Enhanced-Edition                                     | As is               | amd64, arm64 |
+| Y    | `O`  | `libcurl-gnutls`               | cURL Library (GnuTLS flavour), with Debian naming.                    | https://github.com/archlinux/svntogit-community/blob/packages/libcurl-gnutls/trunk/PKGBUILD | As is               | amd64 only   |
+| Y    | `P`  | `spotify`                      | Meta package for installing Spotify software.                         | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/                       | `/usr/lib/spotify/` | amd64 only   |
+| N    | `V`  | `vscode-vanilla`               | The official release of Visual Studio Code, an powerful editor.       | https://go.microsoft.com/fwlink/?LinkID=620884                                              | `/usr/lib/vscode/`  | amd64, arm64 |
+| N    | `O`  | `librespot`                    | An open source Spotify library                                        | https://github.com/librespot-org/librespot                                                  | As is               | amd64, arm64 |
+
+<!--
+| NEVER | `O` | `windowsnt-kernel` | Windows NT Kernel (5.1) | Unknown source | `file://C:/Windows/System32/` | amd64, i486 |
+Just joking.
+-->
 
 ## Having issue? Or requesting new package?
 
