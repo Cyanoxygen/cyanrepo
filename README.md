@@ -20,7 +20,7 @@ Then add an entry to your `sources.list`:
 
 ```
 
-Then run `apt-update`.
+Then run `apt update`.
 
 ## Original idea
 
@@ -52,6 +52,102 @@ Hint: for "type" section, the definition is as follows:
 | NEVER | `O` | `windowsnt-kernel` | Windows NT Kernel (5.1) | Unknown source | `file://C:/Windows/System32/` | amd64, i486 |
 Just joking.
 -->
+
+## Manual packaging how-to, using Ciel
+
+Feel free to build it yourself, it is not that hard though.
+
+### Overall 
+
+In summary build steps are basically as follows:
+
+1. Install necessary build tools
+2. Initialize build environment
+3. Update the build environment
+4. Clone tree
+5. Build and install
+
+You can learn more about packaging at [here](https://wiki.aosc.io/developer/packaging/basics/).
+
+You have to do all these steps under AOSC OS, as this repo is oriented to AOSC itself. 
+
+### Prepare build environment
+
+Install `ciel` build tool:
+
+```shell
+sudo apt install ciel
+```
+
+Prepare a folder which Ciel will work at, e.g.
+
+```shell
+mkdir ~/ciel
+cd ciel
+```
+
+### Initialize build environment
+
+In the Ciel work directory, run:
+
+NOTE: All Ciel commands should run in root.
+
+```
+sudo ciel init
+```
+
+And a Ciel workspace is created. Then we need to load a BuildKit in it:
+
+Pick a mirror and download `aosc-os/os-{VARIANT}/buildkit/aosc-os_buildkit_latest_{VARIANT}.tar.xz` to any location (`VARIANT` is your platform, e.g. `amd64`, `arm64`):
+
+```
+wget https://repo.aosc.io/aosc-os/os-amd64/buildkit/aosc-os_buildkit_latest_amd64.tar.xz
+```
+
+Once downloaded, load the BuildKit into Ciel workspace:
+
+```
+sudo ciel load-os ./aosc-os_buildkit_latest_amd64.tar.xz
+```
+
+Once loaded, run `sudo ciel config -g` to configure your Ciel workspace. It will ask you whether to edit `sources.list`. This repository is targeted to Stable branch, so you should just modify the mirror link.
+
+Once loaded and configured, you can now update your container:
+
+```
+sudo ciel update-os
+```
+
+### Initialize repo tree
+
+In your Ciel workspace, you can now clone this tree into the `TREE` folder.
+
+```
+mkdir TREE
+cd TREE
+git clone https://github.com/Cyanoxygen/cyanrepo extra-cyanrepo
+cd ..
+```
+
+Then you need a instance to actually run:
+
+```
+sudo ciel add stable
+```
+
+### Build it!
+
+At this stage you are all set, and cleared to build your own package.
+
+```
+sudo ciel build -i stable <package1> <package2> ...
+```
+
+Once packages are built, you can find them under `OUTPUT/debs` folder.
+
+Then it's your turn to install, run, or even host your own copy of this repository!
+
+-----
 
 ## Having issue? Or requesting new package?
 
