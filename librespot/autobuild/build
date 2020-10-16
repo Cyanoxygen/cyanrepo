@@ -1,9 +1,10 @@
 #!/bin/bash
 
 abinfo "Building librespot..."
-cargo build --release --no-default-features --features pulseaudio-backend,rodio-backend
+cargo build --release --no-default-features --features rodio-backend,pulseaudio-backend
 
 abinfo "Installing files..."
-install -m 0755 ./target/release/librespot "$PKGDIR/usr/bin/librespot"
+mkdir -p "$PKGDIR/usr/bin"
+install -m 0755 ./target/release/librespot "$PKGDIR/usr/bin/"
 
 abinfo "Installation done!"

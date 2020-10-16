@@ -46,7 +46,7 @@ Hint: for "type" section, the definition is as follows:
 | Y    | `O`  | `libcurl-gnutls`               | cURL Library (GnuTLS flavour), with Debian naming.                    | https://github.com/archlinux/svntogit-community/blob/packages/libcurl-gnutls/trunk/PKGBUILD | As is               | amd64 only   |
 | Y    | `P`  | `spotify`                      | Meta package for installing Spotify software.                         | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/                       | `/usr/lib/spotify/` | amd64 only   |
 | Y    | `V`  | `vscode-vanilla`               | The official release of Visual Studio Code, an powerful editor.       | https://go.microsoft.com/fwlink/?LinkID=620884                                              | `/usr/lib/vscode/`  | amd64, arm64 |
-| N    | `O`  | `librespot`                    | An open source Spotify library                                        | https://github.com/librespot-org/librespot                                                  | As is               | amd64, arm64 |
+| Y    | `O`  | `librespot`                    | An open source Spotify library                                        | https://github.com/librespot-org/librespot                                                  | As is               | amd64, arm64 |
 
 <!--
 | NEVER | `O` | `windowsnt-kernel` | Windows NT Kernel (5.1) | Unknown source | `file://C:/Windows/System32/` | amd64, i486 |
