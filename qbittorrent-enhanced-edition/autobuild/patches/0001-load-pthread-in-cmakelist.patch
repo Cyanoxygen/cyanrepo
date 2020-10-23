@@ -1,0 +1,24 @@
+--- qBittorrent-Enhanced-Edition-release-4.3.0.10-b/CMakeLists.txt	2020-10-23 05:04:04.000000000 +0800
++++ qBittorrent-Enhanced-Edition-release-4.3.0.10-a/CMakeLists.txt	2020-10-23 21:34:27.870300187 +0800
+@@ -34,6 +34,8 @@
+         "Install systemd service file to a directory manually overridable with Systemd_SERVICES_INSTALL_DIR"
+         OFF "NOT GUI" OFF
+     )
++    FIND_PACKAGE(Threads REQUIRED)
++    SET(Boost_USE_MULTITHREADED ON)
+ elseif (MSVC)
+     feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
+ endif()
+--- qBittorrent-Enhanced-Edition-release-4.3.0.10-b/src/app/CMakeLists.txt	2020-10-23 05:04:04.000000000 +0800
++++ qBittorrent-Enhanced-Edition-release-4.3.0.10-a/src/app/CMakeLists.txt	2020-10-23 21:35:24.747735281 +0800
+@@ -62,7 +62,9 @@
+ target_link_libraries(qbt_app PRIVATE
+     qbt_base
+     qbt_version_definitions
+-)
++    PUBLIC
++    ${CMAKE_THREAD_LIBS_INIT}
++    )
+ 
+ set_target_properties(qbt_app PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+ if (GUI)
