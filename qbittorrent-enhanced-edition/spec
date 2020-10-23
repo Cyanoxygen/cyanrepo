@@ -1,3 +1,3 @@
-VER=4.2.5.16
+VER=4.3.0.10
 SRCTBL="https://github.com/c0re100/qBittorrent-Enhanced-Edition/archive/release-$VER.tar.gz"
-CHKSUM="sha256::ebae940c93bca2cdaf4fc353f1fe7177006e4ac25a921b42403b6296d4dc9d3e"
+CHKSUM="sha256::b8ddbfbc16602858ee1ce4dde9e0760f922dc67338f5836ae3ae9708098fa60e"
