@@ -1,6 +1,6 @@
 PKGNAME="librespot"
 PKGDES="An open source client library for Spotify."
 PKGDEP="pulseaudio"
-PKGSEC="multimedia"
+PKGSEC="sound"
 
 BUILDDEP="rustc pkg-config alsa-lib pulseaudio"
