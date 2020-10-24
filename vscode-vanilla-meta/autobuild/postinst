@@ -45,6 +45,9 @@ echo "Removing existing files..."
 rm -rf /usr/share/vscode 2>/dev/null || true
 rm -rf /usr/lib/vscode 2>/dev/null || true
 
+echo "Killing running VSCode processes..."
+pkill "/usr/lib/vscode" || true
+
 echo "Unpacking Visual Studio Code..."
 tar -xvf "$TMPDIR/$PACKFILE"
 if [ "$?" != "0" ]; then

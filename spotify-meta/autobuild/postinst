@@ -41,7 +41,7 @@ if [ "$?" != "0" ]; then
 fi
 
 echo "Killing running Spotify processes..."
-pkill "spotify"
+pkill "/usr/lib/spotify" || true
 
 echo "Removing existing Spotify files..."
 rm -f /usr/bin/spotify
