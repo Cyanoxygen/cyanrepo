@@ -1,5 +1,5 @@
 PKGNAME="vscode-vanilla-meta"
 PKGDEP="alsa-lib at-spi2-atk cups desktop-file-utils fontconfig gtk-3 gconf libnotify libsecret nss x11-lib"
 PKGSEC=x11
-PKGCONFL="vscode"
+PKGCONFL="vscode vscode-vanilla"
 PKGDES="Official release of Visual Studio Code editor - Meta package"
