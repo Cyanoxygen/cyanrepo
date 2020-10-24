@@ -1,0 +1,61 @@
+abinfo "Actually we do things here."
+
+#!/bin/bash
+
+# Visual Studio Code Bootstrapper
+
+#DOWNLOAD="https://update.code.visualstudio.com/latest/linux-x64/stable"
+DOWNLOAD="http://192.168.25.1"
+PACKFILE="code-stable-x64-1602601238.tar.gz"
+TMPDIR="$SRCDIR/vscode-vanilla"
+
+errquit() {
+        popd > /dev/null
+        rm -rf $TMPDIR
+        exit 1
+}
+
+if [ "$(uname -m)" == "aarch64" ]; then
+        DOWNLOAD="https://update.code.visualstudio.com/latest/linux-arm64/stable"
+        PACKFILE="code-stable-arm64-1602601132.tar.gz"
+fi
+
+abinfo "Target architecture is $(uname -m)."
+abinfo "Preparing setup..."
+
+mkdir -p $TMPDIR
+
+abinfo "Downloading Visual Studio Code..."
+FAILED=1
+pushd "$TMPDIR" > /dev/null
+for i in 1 2 3; do
+        abinfo "Attempt $i/3..."
+        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD/$PACKFILE"
+        if [ "$?" == "0" ]; then
+                abinfo "Download complete."
+                FAILED=0
+                break
+        fi
+done
+
+if [ "$FAILED" != "0" ]; then
+        abinfo "Failed to download. Please try again."
+        errquit
+fi
+
+abinfo "Unpacking Visual Studio Code..."
+tar -xvf "$TMPDIR/$PACKFILE"
+if [ "$?" != "0" ]; then
+        abinfo "Failed to unpack the archive. Please try again."
+        errquit
+fi
+
+abinfo "Copying files..."
+mkdir -p "$PKGDIR/usr/lib"
+if [ "$(uname -m)" == "aarch64" ]; then
+        mv -v "$TMPDIR/VSCode-linux-arm64" "$PKGDIR/usr/lib/vscode"
+else
+        mv -v "$TMPDIR/VSCode-linux-x64" "$PKGDIR/usr/lib/vscode"
+fi
+
+

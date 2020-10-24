@@ -1,0 +1,34 @@
+
+#!/usr/bin/env bash
+#
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for license information.
+
+# Symlink bin command to /usr/bin
+rm -f /usr/bin/code
+ln -s /usr/lib/vscode/bin/code /usr/bin/code
+
+# Register code in the alternatives system
+# Priority of 0 should never make code the default editor in auto mode as most
+# developers would prefer a terminal editor as the default.
+update-alternatives --install /usr/bin/editor editor /usr/bin/code 0
+
+# Install the desktop entry
+if hash desktop-file-install 2>/dev/null; then
+	desktop-file-install /usr/share/applications/code.desktop
+	desktop-file-install /usr/share/applications/code-url-handler.desktop
+fi
+
+# Update mimetype database to pickup workspace mimetype
+if hash update-mime-database 2>/dev/null; then
+	update-mime-database /usr/share/mime
+fi
+
+if [ "code" != "code-oss" ]; then
+	# Remove the legacy bin command if this is the stable build
+	if [ "code" = "code" ]; then
+		rm -f /usr/local/bin/code
+	fi
+fi
+EOF
+
