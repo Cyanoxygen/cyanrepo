@@ -4,8 +4,7 @@ abinfo "Actually we do things here."
 
 # Visual Studio Code Bootstrapper
 
-#DOWNLOAD="https://update.code.visualstudio.com/latest/linux-x64/stable"
-DOWNLOAD="http://192.168.25.1"
+DOWNLOAD="https://update.code.visualstudio.com/latest/linux-x64/stable"
 PACKFILE="code-stable-x64-1602601238.tar.gz"
 TMPDIR="$SRCDIR/vscode-vanilla"
 
@@ -30,7 +29,7 @@ FAILED=1
 pushd "$TMPDIR" > /dev/null
 for i in 1 2 3; do
         abinfo "Attempt $i/3..."
-        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD/$PACKFILE"
+        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD"
         if [ "$?" == "0" ]; then
                 abinfo "Download complete."
                 FAILED=0
