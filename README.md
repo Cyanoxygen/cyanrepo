@@ -49,6 +49,9 @@ Hint: for "type" section, the definition is as follows:
 | Y    | `P`  | `spotify`                      | Complete package for installing Spotify software.                         | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/                       | `/usr/lib/spotify/` | amd64 only   |
 | Y    | `V`  | `vscode-vanilla`               | Complete package of the official release of Visual Studio Code.       | https://go.microsoft.com/fwlink/?LinkID=620884                                              | `/usr/lib/vscode/`  | amd64, arm64 |
 | Y    | `O`  | `librespot`                    | An open source Spotify library                                        | https://github.com/librespot-org/librespot                                                  | As is               | amd64, arm64 |
+| N    | `O`  | `rpi-kernel`                    | Linux kernel for Raspberry Pi (arm64) | https://github.com/raspberrypi/linux/tree/rpi-5.8.y                                                | `/boot`               | arm64 only |
+| N    | `O`  | `rpi-firmware`                    | Raspberry Pi Firmware (GPU, startx, etc) | https://github.com/raspberrypi/firmware | As is               | noarch |
+| N    | `O`  | `rpi-eeprom`                    | Raspberry Pi 4 EEPROM image | https://github.com/raspberrypi/rpi-eeprom | As is               | noarch |
 
 <!--
 | NEVER | `O` | `windowsnt-kernel` | Windows NT Kernel (5.1) | Unknown source | `file://C:/Windows/System32/` | amd64, i486 |
