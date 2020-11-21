@@ -5,7 +5,7 @@ abinfo "Actually we do things here."
 # Visual Studio Code Bootstrapper
 
 DOWNLOAD="https://update.code.visualstudio.com/latest/linux-x64/stable"
-PACKFILE="code-stable-x64-1602601238.tar.gz"
+PACKFILE="code-stable-x64-1605051992.tar.gz"
 TMPDIR="$SRCDIR/vscode-vanilla"
 
 errquit() {
@@ -16,7 +16,7 @@ errquit() {
 
 if [ "$(uname -m)" == "aarch64" ]; then
         DOWNLOAD="https://update.code.visualstudio.com/latest/linux-arm64/stable"
-        PACKFILE="code-stable-arm64-1602601132.tar.gz"
+        PACKFILE="code-stable-arm64-1605051348.tar.gz"
 fi
 
 abinfo "Target architecture is $(uname -m)."
@@ -29,7 +29,7 @@ FAILED=1
 pushd "$TMPDIR" > /dev/null
 for i in 1 2 3; do
         abinfo "Attempt $i/3..."
-        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD"
+        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD" || true
         if [ "$?" == "0" ]; then
                 abinfo "Download complete."
                 FAILED=0
