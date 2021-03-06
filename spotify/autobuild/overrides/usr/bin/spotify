@@ -1,0 +1,2 @@
+#!/bin/bash
+PWD=/usr/lib/spotify exec /usr/lib/spotify/spotify
