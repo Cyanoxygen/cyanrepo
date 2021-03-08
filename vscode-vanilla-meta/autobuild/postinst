@@ -3,7 +3,7 @@
 # Visual Studio Code Bootstrapper
 
 DOWNLOAD="https://update.code.visualstudio.com/latest/linux-x64/stable"
-PACKFILE="code-stable-x64-1605051992.tar.gz"
+PACKFILE="code-stable-x64.tar.gz"
 TMPDIR="/var/tmp/vscode-vanilla"
 
 errquit() {
@@ -15,7 +15,7 @@ errquit() {
 
 if [ "$(uname -m)" == "aarch64" ]; then
         DOWNLOAD="https://update.code.visualstudio.com/latest/linux-arm64/stable"
-        PACKFILE="code-stable-arm64-1605051348.tar.gz"
+        PACKFILE="code-stable-arm64.tar.gz"
 fi
 
 echo "Target architecture is $(uname -m)."

@@ -3,3 +3,4 @@ PKGDEP="alsa-lib at-spi2-atk cups desktop-file-utils fontconfig gtk-3 gconf libn
 PKGSEC=x11
 PKGCONFL="vscode vscode-vanilla"
 PKGDES="Official release of Visual Studio Code editor - Meta package"
+FAILARCH="!(amd64|arm64)"
