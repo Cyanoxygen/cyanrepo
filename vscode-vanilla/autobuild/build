@@ -27,7 +27,7 @@ FAILED=1
 pushd "$TMPDIR" > /dev/null
 for i in 1 2 3; do
         abinfo "Attempt $i/3..."
-        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD" || true
+        wget -O "$TMPDIR/$PACKFILE" "$DOWNLOAD"
         if [ "$?" == "0" ]; then
                 abinfo "Download complete."
                 FAILED=0
