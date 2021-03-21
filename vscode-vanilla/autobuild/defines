@@ -4,3 +4,5 @@ PKGSEC=x11
 PKGCONFL="vscode vscode-vanilla-meta"
 PKGDES="Official release of Visual Studio Code editor - Complete package"
 FAILARCH="!(amd64|arm64)"
+ABSTRIP=0
+ABSPLITDBG=0
