@@ -27,8 +27,8 @@ make -C lib DESTDIR="$PKGDIR" install
 mv "${PKGDIR}"/usr/lib/libcurl{,-gnutls}.so.4.6.0
 rm "${PKGDIR}"/usr/lib/libcurl.{a,so}*
 abinfo "Creating symbolic links..."
-for version in 3 4; do
-    ln -s libcurl-gnutls.so.4.6.0 "${PKGDIR}"/usr/lib/libcurl-gnutls.so.${version}
+for version in 3 4 4.0.0 4.1.0 4.2.0 4.3.0 4.4.0 4.5.0 4.6.0; do
+    ln -s libcurl-gnutls.so.4.7.0 "${PKGDIR}"/usr/lib/libcurl-gnutls.so.${version}
 done
 install -dm 755 "${PKGDIR}"/usr/share/licenses
 ln -s curl "${PKGDIR}"/usr/share/licenses/libcurl-gnutls
