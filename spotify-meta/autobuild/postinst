@@ -4,7 +4,7 @@
 
 # Choose what program should be called
 UNPACK_EXEC="dpkg-deb"
-PACKFILE="spotify-client_1.1.42.622.gbd112320-37_amd64.deb"
+PACKFILE="spotify-client_1.1.56.595.g2d2da0de_amd64.deb"
 DOWNLOAD="http://repository.spotify.com/pool/non-free/s/spotify-client/$PACKFILE"
 TMPDIR="/var/tmp/spotify"
 
