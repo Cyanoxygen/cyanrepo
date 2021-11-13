@@ -1,3 +1,0 @@
-abinfo "Do nothing..."
-mkdir -p "$PKGDIR/usr/lib/vscode"
-
