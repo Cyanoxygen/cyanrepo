@@ -1,14 +1,4 @@
-# Actually do things
-# Choose what program should be called
-UNPACK_EXEC="dpkg-deb"
-PACKFILE="spotify-client_1.1.56.595.g2d2da0de_amd64.deb"
-DOWNLOAD="http://repository.spotify.com/pool/non-free/s/spotify-client/$PACKFILE"
-
 TMPDIR="$SRCDIR/spotify"
-
-if ! [ -e "/usr/bin/dpkg-deb" ]; then
-        UNPACK_EXEC="ar"
-fi
 
 mkdir -p $TMPDIR
 
@@ -19,49 +9,14 @@ errquit() {
 }
 
 
-# Download the package
-for i in 1 2 3; do
-        abinfo "Downloading Spotify Debian package... "
-        abinfo "Attempt [$i/3]"
-        pushd $TMPDIR
-        # $VER can not be used here, since this is dpkg-related, so the only choice is to hardcode
-        wget "$DOWNLOAD"
-        if [ "$?" == "0" ]; then
-                abinfo "Download complete."
-                popd
-                break
-        fi
-done
-
+# Unpack the package
+abinfo "Unpacking pacakge..."
+dpkg-deb -X "$SRCDIR/spotify.deb" "$TMPDIR/"
 if [ "$?" != "0" ]; then
-        abdie "Download failed."
-        # return 1 to the parent process to fail this installation.
+	abdie "Failed to unpack, make sure you have enough disk space."
         errquit
 fi
-
-# Unpack the package
-if [ "$UNPACK_EXEC" == "dpkg-deb" ]; then
-        abinfo "Unpacking pacakge..."
-        pushd $TMPDIR
-        dpkg-deb -X "./$PACKFILE" "$TMPDIR/"
-        if [ "$?" != "0" ]; then
-                abdie "Failed to unpack, make sure you have enough disk space."
-                errquit
-        fi
-else
-        abinfo "Unpacking package..."
-        pushd $TMPDIR
-        ar xv $PACKFILE || \
-                abdie "Failed to unpack, make sure you have enough disk space."  && \
-                errquit
-echo "Configuring spotify..."
-        tar -Jxv $TMPDIR/data.tar.xz
-        if [ "$?" != "0" ]; then
-                abdie "Failed to unpack, make sure you have enough disk space."
-                errquit
-        fi
-fi
-
+find $TMPDIR/usr/share/spotify -type f -name '*.so.*' -exec chmod a+x {} \;
 # Move the file to the disired destination
 abinfo "Moving Spotify folder..."
 mkdir -p "$PKGDIR/usr/share/doc/spotify/"
