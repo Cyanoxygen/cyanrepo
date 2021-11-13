@@ -24,7 +24,7 @@ abinfo "Installing libs..."
 # Taken fron Arch Linux PKGBUILD
 # See https://github.com/archlinux/svntogit-community/blob/packages/libcurl-gnutls/trunk/PKGBUILD
 make -C lib DESTDIR="$PKGDIR" install
-mv "${PKGDIR}"/usr/lib/libcurl{,-gnutls}.so.4.6.0
+mv "${PKGDIR}"/usr/lib/libcurl{,-gnutls}.so.4.7.0
 rm "${PKGDIR}"/usr/lib/libcurl.{a,so}*
 abinfo "Creating symbolic links..."
 for version in 3 4 4.0.0 4.1.0 4.2.0 4.3.0 4.4.0 4.5.0 4.6.0; do

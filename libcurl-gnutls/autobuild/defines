@@ -3,6 +3,8 @@ PKGSEC=libs
 PKGDEP="ca-certs krb5 libidn2 libssh2 nghttp2 gnutls zlib rtmpdump \
         brotli libpsl e2fsprogs"
 PKGDES="An URL retrieval library with gnutls flavour"
+ABSPLITDBG=0
+
 RECONF=0
 PKGDEP__RETRO="ca-certs openssl"
 PKGDEP__ARMEL="${PKGDEP__RETRO}"
