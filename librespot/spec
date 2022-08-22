@@ -1,3 +1,3 @@
-VER="0.1.3"
+VER="0.4.2"
 SRCTBL="https://github.com/librespot-org/librespot/archive/v$VER.tar.gz"
-CHKSUM="sha256::2d28a63c6dda08ecbc1245c7cfe34c9b3b29e8c5304f4aa8b65aedb899056b25"
+CHKSUM="sha256::cc8cb81bdbaa5abf366170dec5e6b8c0ecf570a7cb68f04483e9f7eed338ca61"
