@@ -1,3 +1,3 @@
-VER="1.1.72.439.gc253025e"
+VER="1.1.84.716.gc5f8b819"
 SRCS="file::rename=spotify.deb::http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VER}_amd64.deb"
-CHKSUMS="sha256::c211a16b6ed6627c4b7d8ca6997376f8345dca638938696933c5495405ce9e16"
+CHKSUMS="sha256::08e6b2666dc2a39624890e553a3046d05ecebe17bcc2fe930d49314b2fb812c7"
