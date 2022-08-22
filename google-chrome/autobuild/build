@@ -1,0 +1,21 @@
+abinfo "Extracting archive file ..."
+dpkg -x "$SRCDIR"/google-chrome-stable_current_amd64.deb \
+    "$SRCDIR"/chrome/
+
+abinfo "Deploying files ..."
+mkdir -pv "$PKGDIR"/usr/{lib/google-chrome,share/pixmaps}
+cp -arv "$SRCDIR"/chrome/opt/google/chrome/* \
+    "$PKGDIR"/usr/lib/google-chrome/
+cp -rv "$SRCDIR"/chrome/usr \
+    "$PKGDIR"/
+
+abinfo "Installing icons ..."
+ln -sfv ../../lib/google-chrome/product_logo_256.png \
+       "$PKGDIR"/usr/share/pixmaps/google-chrome.png
+
+abinfo "Installing symlink to google-chrome ..."
+ln -sfv ../lib/google-chrome/google-chrome \
+       "$PKGDIR"/usr/bin/google-chrome-stable
+
+abinfo "Removing cron job for APT updates ..."
+rm -fv /etc/cron.daily/google-chrome
