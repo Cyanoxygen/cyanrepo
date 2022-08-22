@@ -3,4 +3,5 @@ PKGDES="An open source client library for Spotify."
 PKGDEP="pulseaudio"
 PKGSEC="sound"
 
-BUILDDEP="rustc pkg-config alsa-lib pulseaudio"
+BUILDDEP="rustc pkg-config alsa-lib pulseaudio llvm"
+ABSPLITDBG=0
