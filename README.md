@@ -10,21 +10,21 @@ WARNING: This repo may against their EULAs. Use it at your own risk. Some packag
 
 Add GPG Key to your APT keystore:
 
+```sh
+wget -O - https://repo.cyano.uk/BC72A88A974A606AC360A434FCDD9F8CC934ABE9.pub | sudo apt-key add -
 ```
 
-```
+Then add an entry to your `/etc/apt/sources.list.d/`:
 
-Then add an entry to your `sources.list`:
-
-```
-
+```sh
+echo "deb https://repo.cyano.uk/ stable main" | sudo tee /etc/apt/sources.list.d/cyanrepo.list
 ```
 
 Then run `apt update`.
 
-## Original idea
+## Origin
 
-AOSC is a cool OS, but there's no support from some software vendors as they usually provide packages for Debian. 
+AOSC is a cool OS, but there's no support from some software vendors as they usually provide packages for Debian.
 
 So this idea comes out, to provide some (meta or not) packages in order to install these software in AOSC.
 
@@ -44,20 +44,18 @@ Hint: for "type" section, the definition is as follows:
 | ---- | ---- | ------------------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------- | ------------ |
 | Y    | `v`  | `qbittorrent-enhanced-edition` | qBittorrent Enhanced Edition, a qBittorrent fork, with many features. | https://github.com/c0re100/qBittorrent-Enhanced-Edition                                     | As is               | amd64, arm64 |
 | Y    | `O`  | `libcurl-gnutls`               | cURL Library (GnuTLS flavour), with Debian naming.                    | https://github.com/archlinux/svntogit-community/blob/packages/libcurl-gnutls/trunk/PKGBUILD | As is               | amd64 only   |
-| Y    | `P`  | `spotify`                      | Complete package for installing Spotify software.                         | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/                       | `/usr/lib/spotify/` | amd64 only   |
-| Y    | `V`  | `vscode-vanilla`               | Complete package of the official release of Visual Studio Code.       | https://go.microsoft.com/fwlink/?LinkID=620884                                              | `/usr/lib/vscode/`  | amd64, arm64 |
+| Y    | `P`  | `spotify`                      | Official Spotify client (repack)                                      | https://repository-origin.spotify.com/pool/non-free/s/spotify-client/                       | `/usr/lib/spotify/` | amd64 only   |
+| Y    | `V`  | `vscode-vanilla`               | Official release of Visual Studio Code. (repack)                      | https://go.microsoft.com/fwlink/?LinkID=620884                                              | `/usr/lib/vscode/`  | amd64, arm64 |
 | Y    | `O`  | `librespot`                    | An open source Spotify library                                        | https://github.com/librespot-org/librespot                                                  | As is               | amd64, arm64 |
+| Y    | `O`  | `google-chrome`                | Official build of Google Chrome (repack)                              | https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb                   | `/usr/lib/google-chrome` | amd64 only |
 
-<!--
-| NEVER | `O` | `windowsnt-kernel` | Windows NT Kernel (5.1) | Unknown source | `file://C:/Windows/System32/` | amd64, i486 |
-Just joking.
--->
+<!--| NEVER | `O` | `windowsnt-kernel` | Windows NT Kernel (5.1) | Unknown source | `file://C:/Windows/System32/` | amd64, i486 | Just joking. -->
 
 ## Manual packaging how-to, using Ciel
 
 Feel free to build it yourself, it is not that hard though.
 
-### Overall 
+### Summary
 
 In summary build steps are basically as follows:
 
@@ -90,49 +88,27 @@ cd ciel
 
 In the Ciel work directory, run:
 
-NOTE: All Ciel commands should run in root.
+NOTE: All Ciel commands should be run with root privileges.
 
 ```
-sudo ciel init
+sudo ciel new
 ```
 
-And a Ciel workspace is created. Then we need to load a BuildKit in it:
+Fill out the question `ciel` asked for you, apart from maintainer name and `sources.list` modification, you may leave others with defaults.
 
-Pick a mirror and download `aosc-os/os-{VARIANT}/buildkit/aosc-os_buildkit_latest_{VARIANT}.tar.xz` to any location (`VARIANT` is your platform, e.g. `amd64`, `arm64`):
+Ciel will now download AOSC OS BuildKit automatically, and initialize an AOSC ABBS tree to `$CIEL/TREE`.
 
-```
-wget https://repo.aosc.io/aosc-os/os-amd64/buildkit/aosc-os_buildkit_latest_amd64.tar.xz
-```
+You can rename the TREE folder or delete it, and clone this repository to `TREE`:
 
-Once downloaded, load the BuildKit into Ciel workspace:
-
-```
-sudo ciel load-os ./aosc-os_buildkit_latest_amd64.tar.xz
+```sh
+sudo mv TREE abbs
+git clone https://github.com/Cyanoxygen/cyanrepo TREE
 ```
 
-Once loaded, run `sudo ciel config -g` to configure your Ciel workspace. It will ask you whether to edit `sources.list`. This repository is targeted to Stable branch, so you should just modify the mirror link.
-
-Once loaded and configured, you can now update your container:
+Once all these things are done, upgrade the container or you will suffer from strange errors.
 
 ```
 sudo ciel update-os
-```
-
-### Initialize repo tree
-
-In your Ciel workspace, you can now clone this tree into the `TREE` folder.
-
-```
-mkdir TREE
-cd TREE
-git clone https://github.com/Cyanoxygen/cyanrepo extra-cyanrepo
-cd ..
-```
-
-Then you need a instance to actually run:
-
-```
-sudo ciel add stable
 ```
 
 ### Build it!
@@ -143,7 +119,7 @@ At this stage you are all set, and cleared to build your own package.
 sudo ciel build -i stable <package1> <package2> ...
 ```
 
-Once packages are built, you can find them under `OUTPUT/debs` folder.
+Once packages are built, you can find them under `OUTPUT-$BRANCH/debs` folder.
 
 Then it's your turn to install, run, or even host your own copy of this repository!
 
@@ -160,5 +136,3 @@ Packages are removed if a package is sent to official ABBS Tree, built and publi
 ## Takedown notice
 
 If you own one or more of the packages listed below, and you think this repository is against your EULA, ToS or other thing, please file an issue, and your package will be removed.
-
-
