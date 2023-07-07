@@ -1,3 +1,4 @@
 VER="0.4.2"
 SRCTBL="https://github.com/librespot-org/librespot/archive/v$VER.tar.gz"
 CHKSUM="sha256::cc8cb81bdbaa5abf366170dec5e6b8c0ecf570a7cb68f04483e9f7eed338ca61"
+CHKUPDATE="anitya::id=141512"
