@@ -1,7 +1,7 @@
 abinfo "Building Non-GUI version..."
 mkdir build build-nox
 pushd build-nox
-	cmake .. ${CMAKE_DEF} -DCMAKE_INSTALL_PREFIX=/usr \
+	cmake .. ${CMAKE_DEF} \
 		-DGUI=OFF -DSYSTEMD=ON
 	cmake --build .
 	DESTDIR=$PKGDIR cmake --install .
@@ -9,7 +9,7 @@ popd
 
 abinfo "Building GUI version..."
 pushd build
-	cmake .. ${CMAKE_DEF} -DCMAKE_INSTALL_PREFIX=/usr
+	cmake .. ${CMAKE_DEF}
 	cmake --build .
 	DESTDIR=$PKGDIR cmake --install .
 popd
