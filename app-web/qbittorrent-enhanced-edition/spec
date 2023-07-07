@@ -1,3 +1,4 @@
 VER=4.4.5.10
 SRCTBL="https://github.com/c0re100/qBittorrent-Enhanced-Edition/archive/release-$VER.tar.gz"
 CHKSUM="sha256::f81c5a7d90c1f9357d95e4189f81cfa515955a38855b1ea0e949334f02b5e9bb"
+CHKUPDATE="anitya::id=199749"
