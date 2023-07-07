@@ -1,0 +1,2 @@
+abinfo "Marking shared libraies as executable..."
+find $PKGDIR/usr/lib -name '*.so*' -exec chmod a+x {} \;
