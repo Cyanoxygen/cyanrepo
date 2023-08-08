@@ -1,0 +1,4 @@
+VER=4.0.0
+SRCS="tbl::https://github.com/Microsoft/GSL/archive/v$VER.tar.gz"
+CHKSUMS="sha256::f0e32cb10654fea91ad56bde89170d78cfbf4363ee0b01d8f097de2ba49f6ce9"
+CHKUPDATE="anitya::id=230453"
