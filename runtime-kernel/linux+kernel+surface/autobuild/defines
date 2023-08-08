@@ -1,0 +1,13 @@
+PKGNAME=linux+kernel+surface
+PKGSEC=kernel
+PKGDEP="linux-kernel-surface-6.4.7"
+PKGDES="Mainline AOSC OS Linux Kernel for Surface devices"
+
+PKGREP="linux+image+new linux+header+new linux+image linux+header linux+image+old linux+header+old linux+kernel"
+PKGPROV="linux+image+new linux+header+new linux+image linux+header linux+image+old linux+header+old liux+kernel"
+
+ABSTRIP=no
+ABELFDEP=no
+ABHOST=noarch
+
+PKGEPOCH=3
