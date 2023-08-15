@@ -1,6 +1,10 @@
-app-editors/vscode-vanilla
-app-multimedia/librespot
+runtime-common/microsoft-gsl
+runtime-kernel/linux+kernel+surface
+runtime-kernel/linux-kernel-surface
+runtime-network/libcurl-gnutls
+runtime-devices/iptsd
 app-multimedia/spotify
+app-multimedia/librespot
+app-editors/vscode-vanilla
 app-web/google-chrome
 app-web/qbittorrent-enhanced-edition
-runtime-network/libcurl-gnutls
