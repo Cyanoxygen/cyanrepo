@@ -1,4 +1,4 @@
-VER=114.0.5735.198
+VER=120.0.6099.129
 SRCS="file::rename=google-chrome-stable_current_amd64.deb::https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-CHKSUMS="sha256::22f9403f4ebe8c814cfcf8343b6b6cae4629a7fd357ebdc008b29f2ff4d4c70c"
+CHKSUMS="sha256::d050758136ec8ea151cb4a1c134c39002b43f64489e40327c60faa071a82ba57"
 CHKUPDATE="anitya::id=5349"
