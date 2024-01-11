@@ -1,0 +1,10 @@
+PKGNAME=vivaldi
+PKGSEC=web
+PKGDES="The Vivaldi Browser"
+PKGDEP="ca-certs alsa-lib atk cairo at-spi2-core cups curl dbus \
+        libdrm expat mesa glib gtk-3 gtk-4 nspr nss pango vulkan x11-lib \
+        libxcb xdg-utils"
+
+FAIL_ARCH="!(amd64)"
+ABSPLITDBG=0
+ABSTRIP=0

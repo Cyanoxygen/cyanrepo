@@ -1,0 +1,25 @@
+abinfo "Extracting Vivaldi ..."
+dpkg -x "$SRCDIR/vivaldi.deb" "$SRCDIR/dist"
+
+abinfo "Installing files ..."
+mkdir -p "$PKGDIR"/etc
+mkdir -p "$PKGDIR"/usr/bin
+mkdir -p "$PKGDIR"/usr/lib
+mkdir -p "$PKGDIR"/usr/share
+
+pushd "$SRCDIR/dist/opt/vivaldi"
+abinfo "Making shared libraries executable ..."
+find . -type f -name '*.so.*' -exec chmod -v a+x {} \;
+popd
+
+cp -r "$SRCDIR/dist/opt/vivaldi" "$PKGDIR/usr/lib/"
+
+abinfo "Installing shared files ..."
+cd "$SRCDIR"/dist/usr/share
+sed -i \
+	-e 's|/opt|/usr/lib|g' \
+	menu/vivaldi.menu
+find . -type f -exec install -Dvm644 {} "$PKGDIR"/usr/share/{} \;
+
+abinfo "Creating /usr/bin/vivaldi ..."
+ln -sf /usr/lib/vivaldi/vivaldi "$PKGDIR"/usr/bin/vivaldi-stable

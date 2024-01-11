@@ -1,0 +1,6 @@
+VIVALDI_VER=6.5.3206.53-1
+VER=6.5.3206.53
+SRCS="file::rename=vivaldi.deb::https://downloads.vivaldi.com/stable/vivaldi-stable_${VIVALDI_VER}_amd64.deb"
+CHKSUMS="sha256::c1a6a8db192e4481f2dfc3baaefca8187f3b168a986c47ed5599444da90bb0b2"
+CHKUPDATE="anitya::id=9036"
+SUBDIR="."
