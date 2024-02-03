@@ -1,4 +1,4 @@
-VER=1.3.1
+VER=1.4.0
 SRCS="tbl::https://github.com/linux-surface/iptsd/archive/refs/tags/v${VER}.tar.gz"
-CHKSUMS="sha256::3e42b860c0475e4fac23adb33799f5953a7d1163f69fcefa2d996eb5f4c4e801"
+CHKSUMS="sha256::08ac50ab3467bce668147297e9ff89939a00c6689913183dbe59b6e5396a09e5"
 
