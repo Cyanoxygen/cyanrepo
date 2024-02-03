@@ -1,4 +1,4 @@
-PKGNAME=linux-kernel-surface-6.4.7
+PKGNAME=linux-kernel-surface-6.7.3
 PKGSEC=kernel
 PKGDEP="iptsd"
 BUILDDEP="bc git pahole parallel llvm kernel-build-common"

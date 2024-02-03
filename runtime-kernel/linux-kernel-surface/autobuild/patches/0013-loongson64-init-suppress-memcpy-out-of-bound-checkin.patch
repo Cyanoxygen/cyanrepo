@@ -1,14 +1,14 @@
-From 6ad0c5bb1c25adfcc54365e69fe3c826d1346528 Mon Sep 17 00:00:00 2001
+From a6fdf1066bed5972d1ebd7199ba8a4104ac6ed96 Mon Sep 17 00:00:00 2001
 From: Tianhao Chai <cth451@gmail.com>
 Date: Wed, 24 Aug 2022 03:54:11 +0000
-Subject: [PATCH] loongson64/init: suppress memcpy out-of-bound checking
+Subject: [PATCH 13/61] loongson64/init: suppress memcpy out-of-bound checking
 
 ---
  arch/mips/loongson64/init.c | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/mips/loongson64/init.c b/arch/mips/loongson64/init.c
-index ee8de1735b7c..395405935a55 100644
+index f25caa6aa9d3..17895a9e7532 100644
 --- a/arch/mips/loongson64/init.c
 +++ b/arch/mips/loongson64/init.c
 @@ -27,7 +27,10 @@ static void __init mips_nmi_setup(void)
@@ -23,5 +23,5 @@ index ee8de1735b7c..395405935a55 100644
  }
  
 -- 
-2.39.1
+2.43.0
 

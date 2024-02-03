@@ -1,7 +1,7 @@
-From 0d4cc83b3515c3fe2cb03a4f4631d56ad77fe74c Mon Sep 17 00:00:00 2001
+From a5c1c7546c8c5c0589b065b7b56198b5713f9344 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
 Date: Thu, 25 Mar 2021 11:33:02 +0100
-Subject: [PATCH 27/62] Bluetooth: btusb: Lower passive lescan interval on
+Subject: [PATCH 27/61] Bluetooth: btusb: Lower passive lescan interval on
  Marvell 88W8897
 
 The Marvell 88W8897 combined wifi and bluetooth card (pcie+usb version)
@@ -34,7 +34,7 @@ Patchset: mwifiex
  1 file changed, 15 insertions(+)
 
 diff --git a/drivers/bluetooth/btusb.c b/drivers/bluetooth/btusb.c
-index 50e23762ec5e..77743eb7434d 100644
+index b8e9de887b5d..66a418ae9584 100644
 --- a/drivers/bluetooth/btusb.c
 +++ b/drivers/bluetooth/btusb.c
 @@ -65,6 +65,7 @@ static struct usb_driver btusb_driver;
@@ -45,7 +45,7 @@ index 50e23762ec5e..77743eb7434d 100644
  
  static const struct usb_device_id btusb_table[] = {
  	/* Generic Bluetooth USB device */
-@@ -468,6 +469,7 @@ static const struct usb_device_id blacklist_table[] = {
+@@ -468,6 +469,7 @@ static const struct usb_device_id quirks_table[] = {
  	{ USB_DEVICE(0x1286, 0x2044), .driver_info = BTUSB_MARVELL },
  	{ USB_DEVICE(0x1286, 0x2046), .driver_info = BTUSB_MARVELL },
  	{ USB_DEVICE(0x1286, 0x204e), .driver_info = BTUSB_MARVELL },
@@ -53,7 +53,7 @@ index 50e23762ec5e..77743eb7434d 100644
  
  	/* Intel Bluetooth devices */
  	{ USB_DEVICE(0x8087, 0x0025), .driver_info = BTUSB_INTEL_COMBINED },
-@@ -4297,6 +4299,19 @@ static int btusb_probe(struct usb_interface *intf,
+@@ -4399,6 +4401,19 @@ static int btusb_probe(struct usb_interface *intf,
  	if (id->driver_info & BTUSB_MARVELL)
  		hdev->set_bdaddr = btusb_set_bdaddr_marvell;
  
@@ -74,5 +74,5 @@ index 50e23762ec5e..77743eb7434d 100644
  	    (id->driver_info & BTUSB_MEDIATEK)) {
  		hdev->setup = btusb_mtk_setup;
 -- 
-2.39.1
+2.43.0
 

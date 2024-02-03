@@ -1,7 +1,7 @@
-From 6ba292a93a2ce4b6d4480e224aff4716565ad20d Mon Sep 17 00:00:00 2001
+From 904f2308dc9189bebca451b969fe289708183f39 Mon Sep 17 00:00:00 2001
 From: "kernel-team@fedoraproject.org" <kernel-team@fedoraproject.org>
 Date: Wed, 6 Feb 2013 09:57:47 -0500
-Subject: [PATCH] ath9k: rx dma stop check
+Subject: [PATCH 04/61] ath9k: rx dma stop check
 
 ---
  drivers/net/wireless/ath/ath9k/mac.c | 12 +++++++++++-
@@ -38,5 +38,5 @@ index b070403e083f..938d99c6fa80 100644
  			"DMA failed to stop in %d ms AR_CR=0x%08x AR_DIAG_SW=0x%08x DMADBG_7=0x%08x\n",
  			AH_RX_STOP_DMA_TIMEOUT / 1000,
 -- 
-2.39.1
+2.43.0
 

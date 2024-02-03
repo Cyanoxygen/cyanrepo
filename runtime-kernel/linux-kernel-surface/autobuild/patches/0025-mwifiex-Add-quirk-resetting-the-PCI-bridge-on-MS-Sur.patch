@@ -1,7 +1,7 @@
-From a34ad66476317cc70ba67d0fb74732617d0062ce Mon Sep 17 00:00:00 2001
+From 6645c012af91d322413fafa2c780f756a691d0e0 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
 Date: Tue, 3 Nov 2020 13:28:04 +0100
-Subject: [PATCH 25/62] mwifiex: Add quirk resetting the PCI bridge on MS
+Subject: [PATCH 25/61] mwifiex: Add quirk resetting the PCI bridge on MS
  Surface devices
 
 The most recent firmware of the 88W8897 card reports a hardcoded LTR
@@ -32,11 +32,11 @@ Patchset: mwifiex
  3 files changed, 31 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/net/wireless/marvell/mwifiex/pcie.c b/drivers/net/wireless/marvell/mwifiex/pcie.c
-index 9a698a16a8f3..14687342bc81 100644
+index 5f997becdbaa..9a9929424513 100644
 --- a/drivers/net/wireless/marvell/mwifiex/pcie.c
 +++ b/drivers/net/wireless/marvell/mwifiex/pcie.c
-@@ -1762,9 +1762,21 @@ mwifiex_pcie_send_boot_cmd(struct mwifiex_adapter *adapter, struct sk_buff *skb)
- static int mwifiex_pcie_init_fw_port(struct mwifiex_adapter *adapter)
+@@ -1702,9 +1702,21 @@ mwifiex_pcie_send_boot_cmd(struct mwifiex_adapter *adapter, struct sk_buff *skb)
+ static void mwifiex_pcie_init_fw_port(struct mwifiex_adapter *adapter)
  {
  	struct pcie_service_card *card = adapter->card;
 +	struct pci_dev *pdev = card->dev;
@@ -55,8 +55,8 @@ index 9a698a16a8f3..14687342bc81 100644
 +		pci_reset_function(parent_pdev);
 +
  	/* Write the RX ring read pointer in to reg->rx_rdptr */
- 	if (mwifiex_write_reg(adapter, reg->rx_rdptr, card->rxbd_rdptr |
- 			      tx_wrap)) {
+ 	mwifiex_write_reg(adapter, reg->rx_rdptr, card->rxbd_rdptr | tx_wrap);
+ }
 diff --git a/drivers/net/wireless/marvell/mwifiex/pcie_quirks.c b/drivers/net/wireless/marvell/mwifiex/pcie_quirks.c
 index dd6d21f1dbfd..f46b06f8d643 100644
 --- a/drivers/net/wireless/marvell/mwifiex/pcie_quirks.c
@@ -163,5 +163,5 @@ index d6ff964aec5b..5d30ae39d65e 100644
  void mwifiex_initialize_quirks(struct pcie_service_card *card);
  int mwifiex_pcie_reset_d3cold_quirk(struct pci_dev *pdev);
 -- 
-2.39.1
+2.43.0
 

@@ -1,9 +1,9 @@
-From d00508b90ed3de0e87fb086b2e857b20cc4fe788 Mon Sep 17 00:00:00 2001
+From 3b733cf993398576e202e3dab6eafe5fdfa0363c Mon Sep 17 00:00:00 2001
 From: Jiaxun Yang <jiaxun.yang@flygoat.com>
 Date: Tue, 7 Nov 2017 09:01:33 +0800
-Subject: [PATCH] Revert "video / output: Drop display output class support"
- This reverts commit f167a64e9d67ebd03d304e369c12011cf2bffaf5 Required by some
- Loongson platform devices drivers
+Subject: [PATCH 07/61] Revert "video / output: Drop display output class
+ support" This reverts commit f167a64e9d67ebd03d304e369c12011cf2bffaf5
+ Required by some Loongson platform devices drivers
 
 Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 ---
@@ -16,10 +16,10 @@ Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
  create mode 100644 include/linux/video_output.h
 
 diff --git a/drivers/video/Kconfig b/drivers/video/Kconfig
-index bf05363d8906..e6c1041b091e 100644
+index b694d7669d32..f297f929adbf 100644
 --- a/drivers/video/Kconfig
 +++ b/drivers/video/Kconfig
-@@ -42,6 +42,12 @@ config VGASTATE
+@@ -51,6 +51,12 @@ config VGASTATE
         tristate
         default n
  
@@ -33,10 +33,10 @@ index bf05363d8906..e6c1041b091e 100644
  	bool
  
 diff --git a/drivers/video/Makefile b/drivers/video/Makefile
-index 831c9fa57a6c..2d5ebaa15a49 100644
+index 6bbc03950899..d7734d11b8aa 100644
 --- a/drivers/video/Makefile
 +++ b/drivers/video/Makefile
-@@ -13,6 +13,8 @@ obj-y				  += backlight/
+@@ -14,6 +14,8 @@ obj-y				  += backlight/
  
  obj-y				  += fbdev/
  
@@ -248,5 +248,5 @@ index 000000000000..ed5cdeb3604d
 +#endif
 +#endif
 -- 
-2.39.1
+2.43.0
 

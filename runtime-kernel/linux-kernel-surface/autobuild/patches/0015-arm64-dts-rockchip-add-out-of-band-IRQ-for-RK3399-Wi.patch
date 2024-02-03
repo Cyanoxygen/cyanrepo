@@ -1,7 +1,8 @@
-From a2be0c60ab60c6becbfc9079a75800bbd52d6f66 Mon Sep 17 00:00:00 2001
+From 162cd541def2c86499b7c7602ca64f00761ab4fa Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <icenowy@aosc.io>
 Date: Mon, 30 Nov 2020 22:49:55 +0800
-Subject: [PATCH] arm64: dts: rockchip: add out-of-band IRQ for RK3399 Wi-Fi
+Subject: [PATCH 15/61] arm64: dts: rockchip: add out-of-band IRQ for RK3399
+ Wi-Fi
 
 Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 ---
@@ -43,5 +44,5 @@ index 054c6a4d1a45..9472f676348a 100644
  
  &sdhci {
 -- 
-2.39.1
+2.43.0
 

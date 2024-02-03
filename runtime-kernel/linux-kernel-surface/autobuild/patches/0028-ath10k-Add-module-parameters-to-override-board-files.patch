@@ -1,7 +1,7 @@
-From d3d216419a3629486149969dc9d646efb06ab490 Mon Sep 17 00:00:00 2001
+From 9e52a15d5154c2fc8bc9df3aad2bc2a13267fd5c Mon Sep 17 00:00:00 2001
 From: Maximilian Luz <luzmaximilian@gmail.com>
 Date: Sat, 27 Feb 2021 00:45:52 +0100
-Subject: [PATCH 28/62] ath10k: Add module parameters to override board files
+Subject: [PATCH 28/61] ath10k: Add module parameters to override board files
 
 Some Surface devices, specifically the Surface Go and AMD version of the
 Surface Laptop 3 (wich both come with QCA6174 WiFi chips), work better
@@ -117,5 +117,5 @@ index 6cdb225b7eac..19c036751fb1 100644
  	ret = firmware_request_nowarn(&fw, filename, ar->dev);
  	ath10k_dbg(ar, ATH10K_DBG_BOOT, "boot fw request '%s': %d\n",
 -- 
-2.39.1
+2.43.0
 
