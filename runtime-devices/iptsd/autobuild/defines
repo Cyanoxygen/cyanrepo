@@ -3,6 +3,7 @@ PKGDES="Daemon for in-kernel Intel Percise Touch & Stylus driver"
 PKGSEC=libs
 
 PKGDEP="systemd spdlog fmt inih sdl2"
-BUILDDEP="llvm meson pkg-config cairomm microsoft-gsl"
+BUILDDEP="llvm meson pkg-config cairomm microsoft-gsl eigen-3"
 
 ABTYPE=meson
+PKGEPOCH=1
