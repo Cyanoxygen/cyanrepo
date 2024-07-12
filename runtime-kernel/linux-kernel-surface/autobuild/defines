@@ -1,8 +1,8 @@
-PKGNAME=linux-kernel-surface-6.7.3
+PKGNAME=linux-kernel-surface-6.9.7
 PKGSEC=kernel
 PKGDEP="iptsd"
 BUILDDEP="bc git pahole parallel llvm kernel-build-common"
-PKGDES="AOSC OS Linux Kernel v6.4.7 for Surface devices"
+PKGDES="AOSC OS Linux Kernel v6.9.7 for Surface devices"
 
 ABSTRIP=0
 ABELFDEP=0
